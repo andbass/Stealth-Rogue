@@ -23,5 +23,8 @@ $(document).ready(function() {
     Sr.init();
 
     var ent = new Sr.Entity();
-    Sr.Display.draw(50, 20, Sr.tileset.wall);
+
+    new Rot.Map.Arena().create(function(x, y, level) {
+        Sr.Display.draw(x, y, level ? Sr.tileset.wall : Sr.tileset.floor);
+    });
 });

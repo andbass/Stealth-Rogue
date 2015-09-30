@@ -12,6 +12,12 @@ Sr.tileset = {
 	wall: {
 		ch: "\u25c6", // diamond
 		fg: "#ffc266",
-		bg: "#c60",
+		bg: "#c60"
+	},
+
+	ground: {
+		ch: "\u00b7", // dot
+		fg: "#777",
+		bg: "#111"
 	}
 }
