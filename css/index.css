@@ -1,0 +1,59 @@
+
+/* Globals */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background: #050505;
+    color: white;
+
+    font-family: 'monospace';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 1.2em;
+}
+
+/* Windows */
+#hud, .pane {
+    display: flex;
+    flex-flow: row wrap;
+
+    justify-content: center;
+}
+
+#hud {
+    margin: 15px;
+
+    border: 3px dashed white;
+}
+
+#hud > div {
+    padding: 10px 25px;
+}
+
+#hud > div > h1 {
+    text-align: center;
+}
+
+.pane {
+    border: 3px solid white;
+}
+
+.pane > div {
+    margin: 10px;
+}
+
+/* Instruments */
+
