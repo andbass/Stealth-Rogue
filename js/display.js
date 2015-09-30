@@ -8,7 +8,7 @@ Sr.Display.init = function() {
 	Sr.Display.prepareUI();
 
     Sr.Display.display = new Rot.Display({
-        forceSquareRatio: true    
+        forceSquareRatio: true
     });
 
     Sr.Display.resize();
@@ -27,13 +27,21 @@ Sr.Display.prepareUI = function() {
 
 Sr.Display.resize = function() {
     var maxSizes = Sr.Display.display.computeSize(
-        Sr.Display.$gameWindow.width(), 
-        $(window).height() - Sr.Display.$hud.height()
+        $(window).width() - Sr.Display.$hud.width(),
+        $(window).height()
     );
 
     Sr.Display.display.setOptions({width: maxSizes[0], height: maxSizes[1]});
 }
 
-Sr.Display.draw = function(x, y, glpyh) {
-	Sr.Display.display.draw(x, y, glpyh.ch, glpyh.fg, glpyh.bg);
+Sr.Display.draw = function(x, y, glyph) {
+    var bg = glyph.bg;
+
+    // If the background of a glyph is undefined, 
+    // we get the background of the specified position and use that
+    if (bg === undefined) {
+        bg = Sr.Display.display._data[x + "," + y][4];
+    }
+
+	Sr.Display.display.draw(x, y, glyph.ch, glyph.fg, bg);
 }

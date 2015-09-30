@@ -7,8 +7,6 @@ Sr.World = function(opts) {
 		players: [],
 		mobs: [],
 	};
-
-
 }
 
 Sr.World.prototype.step = function() {

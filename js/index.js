@@ -24,7 +24,9 @@ $(document).ready(function() {
 
     var ent = new Sr.Entity();
 
-    new Rot.Map.Arena().create(function(x, y, level) {
-        Sr.Display.draw(x, y, level ? Sr.tileset.wall : Sr.tileset.floor);
+    new Rot.Map.Cellular(100, 40).randomize(0.5).create(function(x, y, wall) {
+        Sr.Display.draw(x, y, wall ? Sr.tileset.wall : Sr.tileset.floor);
     });
+
+    Sr.Display.draw(50, 20, ent.glyph);
 });

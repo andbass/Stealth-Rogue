@@ -6,7 +6,6 @@ Sr.tileset = {
 	player: {
 		ch: "@",
 		fg: "#0ff",
-		bg: "#000"
 	},
 
 	wall: {
@@ -15,7 +14,7 @@ Sr.tileset = {
 		bg: "#c60"
 	},
 
-	ground: {
+	floor: {
 		ch: "\u00b7", // dot
 		fg: "#777",
 		bg: "#111"

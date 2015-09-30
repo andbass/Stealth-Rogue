@@ -16,6 +16,8 @@ html, body {
 
     font-family: 'Source Code Pro', 'monospace';
     font-size: 13px;
+
+    text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,28 +28,36 @@ h1 {
     font-size: 1.2em;
 }
 
+body {
+    display: flex;
+    flex-direction: row nowrap;
+}
+
 /* Windows */
 #hud, .pane {
     display: flex;
-    flex-flow: row wrap;
-
-    justify-content: center;
 }
 
 #hud {
+    z-index: 1;
+
+    flex-flow: column wrap;
+    justify-content: flex-start;
+
     border: 3px dashed white;
+}
+
+.pane {
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
 #hud > div {
     padding: 10px 25px;
 }
 
-#hud > div > h1 {
-    text-align: center;
-}
-
 .pane {
-    border: 3px solid white;
+    border: 2px solid white;
 }
 
 .pane > div {
