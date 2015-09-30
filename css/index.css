@@ -14,7 +14,8 @@ html, body {
     background: #050505;
     color: white;
 
-    font-family: 'monospace';
+    font-family: 'Source Code Pro', 'monospace';
+    font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,8 +35,6 @@ h1 {
 }
 
 #hud {
-    margin: 15px;
-
     border: 3px dashed white;
 }
 

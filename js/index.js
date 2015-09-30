@@ -27,7 +27,7 @@ Sr.prepareUI = function() {
 Sr.resize = function() {
     var maxSizes = Sr.display.computeSize(
         Sr.$gameWindow.width(), 
-        $(window).height() - Sr.$hud.height() - 50
+        $(window).height() - Sr.$hud.height()
     );
 
     Sr.display.setOptions({width: maxSizes[0], height: maxSizes[1]});
@@ -48,7 +48,4 @@ $(document).ready(function() {
 
     Sr.init();
 
-    new Rot.Map.Arena(100, 100).create(function(x, y, level) {
-        Sr.display.draw(x, y, level ? "#" : ".", "#fff", "#000"); 
-    });
 });
