@@ -4,33 +4,7 @@ var Sr = Sr || {};
 var Rot = ROT;
 
 Sr.init = function() {
-    Sr.prepareUI();
-
-    Sr.display = new Rot.Display({
-        forceSquareRatio: true    
-    });
-
-    Sr.resize();
-
-    $(window)
-        .resize(Sr.resize)
-        .keydown(Sr.keydown);
-
-    Sr.$gameWindow.append(Sr.display.getContainer());
-}
-
-Sr.prepareUI = function() {
-    Sr.$gameWindow = $("#game-window");
-    Sr.$hud = $("#hud");
-}
-
-Sr.resize = function() {
-    var maxSizes = Sr.display.computeSize(
-        Sr.$gameWindow.width(), 
-        $(window).height() - Sr.$hud.height()
-    );
-
-    Sr.display.setOptions({width: maxSizes[0], height: maxSizes[1]});
+    Sr.Display.init();
 }
 
 Sr.update = function(camera, world) {
@@ -48,4 +22,6 @@ $(document).ready(function() {
 
     Sr.init();
 
+    var ent = new Sr.Entity();
+    Sr.Display.draw(50, 20, Sr.tileset.wall);
 });

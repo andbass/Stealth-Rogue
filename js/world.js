@@ -9,8 +9,8 @@ Sr.World = function(opts) {
 	};
 
 
-};
+}
 
 Sr.World.prototype.step = function() {
 
-};
+}
