@@ -43,8 +43,6 @@ body {
 
     flex-flow: column wrap;
     justify-content: flex-start;
-
-    border: 3px dashed white;
 }
 
 .pane {
