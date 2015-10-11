@@ -10,4 +10,5 @@ $(document).ready(function() {
 
     Sr.Display.init();
     Sr.Game.init();
+    Sr.Input.init();
 });

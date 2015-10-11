@@ -35,6 +35,10 @@ Sr.Display.resize = function() {
     this.display.setOptions({width: this.width, height: this.height});
 }
 
+Sr.Display.clear = function() {
+    this.display._context.clearRect(0, 0, this.$gameWindow.width(), this.$gameWindow.height());
+}
+
 Sr.Display.draw = function(pos, glyph) {
     var bg = glyph.bg;
 

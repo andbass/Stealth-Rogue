@@ -7,7 +7,7 @@ Sr.Game = Sr.Game || {};
 Sr.Game.init = function() {
     this.world = new Sr.World(Rot.Map.Digger);
 
-    this.player = new Sr.Entity({
+    this.player = new Sr.Player({
         name: "You",
         glyph: Sr.glyphset.player,
     });
@@ -26,6 +26,12 @@ Sr.Game.init = function() {
     this.refresh();
 }
 
+Sr.Game.update = function() {
+    this.world.step(); 
+    this.refresh();
+}
+
 Sr.Game.refresh = function() {
+    Sr.Display.clear();
     this.world.draw(this.player);
 }

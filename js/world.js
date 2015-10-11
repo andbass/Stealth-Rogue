@@ -8,25 +8,22 @@ Sr.World = function(Generator, opts) {
     this.width = opts.width || 100;
     this.height = opts.height || 100;
 
-    var map = new Generator(this.width, this.height, opts.mapOptions);
+    this.mapGenerator = new Generator(this.width, this.height, opts.mapOptions);
     if (opts.mapInit) {
         opts.mapInit(map);
     }
 
-    this.generate(map);
+    this.generate();
 
     this.player = opts.player;
     this.mobs = opts.mobs || [];
 }
 
 // Generates the internal world map from a ROT esque map
-Sr.World.prototype.generate = function(map) {
-    // ROT rebinds "this" in the create callback
-    // Makes life harder
-    var self = this;
+Sr.World.prototype.generate = function() {
     this.clear();
 
-    map.create(function(x, y, level) {
+    this.mapGenerator.create(function(x, y, level) {
         var tile = Sr.tileset.floor;
 
         if (level) {
@@ -34,16 +31,16 @@ Sr.World.prototype.generate = function(map) {
             tile = $.extend(true, {}, Sr.tileset.wall);
 
             var fg = Rot.Color.fromString(tile.glyph.fg);
-            fg = Rot.Color.randomize(fg, [10, 0, 20]);
+            fg = Rot.Color.randomize(fg, [0, 40, 20]);
 
             tile.glyph.fg = Rot.Color.toHex(fg);
         }
 
-        self.map[y][x] = {
+        this.map[y][x] = {
             entities: [],
             tile: tile,
         };
-    });
+    }.bind(this));
 }
 
 Sr.World.prototype.clear = function(tile) {
@@ -119,11 +116,15 @@ Sr.World.prototype.constrainPoint = function(point) {
 
 Sr.World.prototype.step = function() {
     if (this.player) {
-        this.player.step(this);
+        for (var i = 0; i < this.player.speed; i++) {
+            this.player.step(this);
+        }
     }
 
     this.mobs.forEach(function(mob) {
-        mob.step(this);
+        for (var i = 0; i < mob.speed; i++) {
+            mob.step(this);
+        }
     });
 }
 
