@@ -5,43 +5,45 @@ var Rot = ROT;
 Sr.Display = {};
 
 Sr.Display.init = function() {
-	Sr.Display.prepareUI();
+	this.prepareUI();
 
-    Sr.Display.display = new Rot.Display({
-        forceSquareRatio: true
+    this.display = new Rot.Display({
+        forceSquareRatio: true,
+        fontSize: 16,
+        fontFamily: $(document.body).css("font-family"),
     });
 
-    Sr.Display.resize();
+    this.resize();
+    $(window).resize(this.resize.bind(this));
 
-    $(window)
-        .resize(Sr.Display.resize)
-        .keydown(Sr.Display.keydown);
-
-    Sr.Display.$gameWindow.append(Sr.Display.display.getContainer());
+    this.$gameWindow.append(this.display.getContainer());
 }
 
 Sr.Display.prepareUI = function() {
-   	Sr.Display.$gameWindow = $("#game-window");
-    Sr.Display.$hud = $("#hud");
+   	this.$gameWindow = $("#game-window");
 }
 
 Sr.Display.resize = function() {
-    var maxSizes = Sr.Display.display.computeSize(
-        $(window).width() - Sr.Display.$hud.width(),
-        $(window).height()
+    var maxSizes = this.display.computeSize(
+        this.$gameWindow.width() + 1,
+        this.$gameWindow.height() + 1
     );
 
-    Sr.Display.display.setOptions({width: maxSizes[0], height: maxSizes[1]});
+    this.width = maxSizes[0];
+    this.height = maxSizes[1];
+
+    this.display.setOptions({width: this.width, height: this.height});
 }
 
-Sr.Display.draw = function(x, y, glyph) {
+Sr.Display.draw = function(pos, glyph) {
     var bg = glyph.bg;
 
     // If the background of a glyph is undefined, 
     // we get the background of the specified position and use that
     if (bg === undefined) {
-        bg = Sr.Display.display._data[x + "," + y][4];
+        bg = this.display._data[pos.x + "," + pos.y][4];
     }
 
-	Sr.Display.display.draw(x, y, glyph.ch, glyph.fg, bg);
+	this.display.draw(pos.x, pos.y, glyph.ch, glyph.fg, bg);
 }
+
