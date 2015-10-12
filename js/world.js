@@ -15,8 +15,7 @@ Sr.World = function(Generator, opts) {
 
     this.generate();
 
-    this.player = opts.player;
-    this.mobs = opts.mobs || [];
+    this.mobs = [];
 }
 
 // Generates the internal world map from a ROT esque map
@@ -31,7 +30,7 @@ Sr.World.prototype.generate = function() {
             tile = $.extend(true, {}, Sr.tileset.wall);
 
             var fg = Rot.Color.fromString(tile.glyph.fg);
-            fg = Rot.Color.randomize(fg, [0, 40, 20]);
+            fg = Rot.Color.add(fg, [0, 0, Rot.RNG.getUniform() * 200].map(Math.floor));
 
             tile.glyph.fg = Rot.Color.toHex(fg);
         }
@@ -66,11 +65,9 @@ Sr.World.prototype.at = function(pos) {
     if (row) {
         return row[pos.x];
     }
-
-    return;
 }
 
-// Returns a slice of the map where the 2D grid is flattend out
+// Returns a slice of the map and flattends out the 2d array
 Sr.World.prototype.slice = function(rect) {
     rect = Sr.defaultVal(rect, new Sr.Rect({
         topLeft: vec2(0),
@@ -114,18 +111,23 @@ Sr.World.prototype.constrainPoint = function(point) {
     );
 }
 
-Sr.World.prototype.step = function() {
-    if (this.player) {
-        for (var i = 0; i < this.player.speed; i++) {
-            this.player.step(this);
+Sr.World.prototype.stepEnt = function(ent) {
+    for (var i = 0; i < ent.speed; i++) {
+        ent.step();
+
+        if (ent.health === 0) {
+            this.remove(ent);
+            break;
         }
     }
+}
 
-    this.mobs.forEach(function(mob) {
-        for (var i = 0; i < mob.speed; i++) {
-            mob.step(this);
-        }
-    });
+Sr.World.prototype.step = function() {
+    if (this.player) {
+        this.stepEnt(this.player);
+    }
+
+    this.mobs.forEach(this.stepEnt.bind(this));
 }
 
 Sr.World.prototype.add = function(ent, opts) {

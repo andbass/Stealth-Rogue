@@ -16,9 +16,6 @@ Sr.Player.prototype.step = function() {
 
     if (action.name === "move") {
         var newPos = this.pos.add(action.dir);
-    
-        if (this.world.at(newPos).tile.walkable) {
-            this.moveTo(this.pos.add(action.dir));
-        }
+        this.moveTo(newPos);
     }
 }

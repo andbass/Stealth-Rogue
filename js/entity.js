@@ -12,12 +12,19 @@ Sr.Entity = function(opts) {
     this.speed = opts.speed || 1;
 
 	this.glyph = opts.glyph || Sr.tileset.default;
+
+    this.inventory = [];
 }
 
+// You should overload this
 Sr.Entity.prototype.step = function() { }
 
 // TODO do this more efficently
 Sr.Entity.prototype.moveTo = function(pos) {
+    if (!this.world.at(pos).tile.walkable) {
+        return;
+    }
+
     var isPlayer = (this === this.world.player);
 
     this.world.remove(this);

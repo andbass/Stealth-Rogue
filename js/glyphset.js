@@ -9,20 +9,25 @@ Sr.glyphset = {
         bg: "#f00",
     },
 
-	player: {
-		ch: "@",
-		fg: "#0ff",
-	},
-
 	wall: {
 		ch: "\u3013",   // two bars 
-        fg: "#70a085",
+        fg: "#cc5",
         bg: "#224",
 	},
 
 	floor: {
 		ch: "\u00b7", // dot
-		fg: "#777",
+		fg: "#aaa",
 		bg: "#111",
-	}
+	},
+
+	player: {
+		ch: "@",
+		fg: "#0ff",
+	},
+
+    grunt: {
+        ch: "G",
+        fg: "#60fa57",
+    },
 }

@@ -2,14 +2,14 @@
 var Sr = Sr || {};
 var Rot = ROT;
 
-Sr.Display = {};
+Sr.Display = Sr.Display || {};
 
 Sr.Display.init = function() {
 	this.prepareUI();
 
     this.display = new Rot.Display({
         forceSquareRatio: true,
-        fontSize: 16,
+        fontSize: 20,
         fontFamily: $(document.body).css("font-family"),
     });
 
@@ -32,7 +32,7 @@ Sr.Display.resize = function() {
     this.width = maxSizes[0];
     this.height = maxSizes[1];
 
-    this.display.setOptions({width: this.width, height: this.height});
+    this.display.setOptions({ width: this.width, height: this.height });
 }
 
 Sr.Display.clear = function() {
