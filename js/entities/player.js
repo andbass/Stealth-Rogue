@@ -9,8 +9,6 @@ Sr.Player = function(opt) {
 Sr.Player.extend(Sr.FOVEntity);
 
 Sr.Player.prototype.step = function() {
-	Sr.FOVEntity.prototype.step.call(this);
-
     var action = Sr.Input.curAction;
     if (!action) {
         return;
@@ -20,4 +18,6 @@ Sr.Player.prototype.step = function() {
         var newPos = this.pos.add(action.dir);
         this.moveTo(newPos);
     }
+
+	this.computeFOV();
 }

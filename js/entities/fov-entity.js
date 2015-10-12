@@ -17,7 +17,7 @@ Sr.FOVEntity = function(opts) {
 
 Sr.FOVEntity.extend(Sr.Entity);
 
-Sr.FOVEntity.prototype.step = function() {
+Sr.FOVEntity.prototype.computeFOV = function() {
 	this.visibleTiles = [];
 
 	this.world.fov.compute(this.pos.x, this.pos.y, this.range, function(x, y, r, visibility) {
