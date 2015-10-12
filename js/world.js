@@ -13,6 +13,7 @@ Sr.World = function(Generator, opts) {
         opts.mapInit(map);
     }
 
+    this.fov = new Rot.FOV.PreciseShadowcasting(this.fovCallback.bind(this));
     this.generate();
 
     this.mobs = [];
@@ -167,6 +168,16 @@ Sr.World.prototype.remove = function(ent) {
     Sr.Array.remove(grid.entities, ent);
 }
 
+Sr.World.prototype.fovCallback = function(x, y) {
+    var grid = this.at(vec2(x, y));
+
+    if (grid) {
+        return grid.tile.walkable;
+    }
+
+    return false;
+}
+
 Sr.World.prototype.draw = function(cam) {
     var drawRect = new Sr.Rect({
         center: cam.pos,
@@ -185,6 +196,12 @@ Sr.World.prototype.draw = function(cam) {
             var grid = this.at(pos);
 
             if (grid) {
+                var isVisisbleTile = cam.visibleTiles.some(function(visisbleGrid) {
+                    return visisbleGrid === grid;
+                });
+
+                if (!isVisisbleTile) continue;
+
                 Sr.Display.draw(screenPos, grid.tile.glyph);
 
                 grid.entities.forEach(function(ent) {

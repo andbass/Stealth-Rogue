@@ -3,12 +3,14 @@ var Sr = Sr || {};
 var Rot = ROT;
 
 Sr.Player = function(opt) {
-    Sr.Entity.call(this, opt);
+    Sr.FOVEntity.call(this, opt);
 }
 
-Sr.Player.extend(Sr.Entity);
+Sr.Player.extend(Sr.FOVEntity);
 
 Sr.Player.prototype.step = function() {
+	Sr.FOVEntity.prototype.step.call(this);
+
     var action = Sr.Input.curAction;
     if (!action) {
         return;

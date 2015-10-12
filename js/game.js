@@ -24,6 +24,8 @@ Sr.Game.init = function() {
 
     $(window).resize(this.refresh.bind(this));
     this.refresh();
+
+    this.update();
 }
 
 Sr.Game.update = function() {

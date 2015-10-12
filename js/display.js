@@ -51,3 +51,10 @@ Sr.Display.draw = function(pos, glyph) {
 	this.display.draw(pos.x, pos.y, glyph.ch, glyph.fg, bg);
 }
 
+Sr.Display.glyph = function(ch, fg, bg) {
+    return {
+        ch: ch,
+        fg: fg,
+        bg: bg,
+    };
+}
