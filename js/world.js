@@ -13,7 +13,7 @@ Sr.World = function(Generator, opts) {
         opts.mapInit(map);
     }
 
-    this.fov = new Rot.FOV.RecursiveShadowcasting(this.fovCallback.bind(this));
+    this.fov = new Rot.FOV.PreciseShadowcasting(this.fovCallback.bind(this));
     this.generate();
 
     this.mobs = [];
