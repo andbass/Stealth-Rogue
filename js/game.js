@@ -27,20 +27,21 @@ Sr.Game.init = function() {
         .pos;
  
     this.world.add(this.player, { isPlayer: true });
+    this.player.computeFOV();
 
-    this.update();
-
-    $(window).resize(this.refresh.bind(this));
+    window.requestAnimationFrame(this.refresh.bind(this));
 }
 
 Sr.Game.update = function() {
     this.world.step(); 
-    this.refresh();
 }
 
 Sr.Game.refresh = function() {
     Sr.Display.clear();
+
     this.world.draw(this.player, {
         useFOV: true,
     });
+
+    window.requestAnimationFrame(this.refresh.bind(this));
 }
