@@ -178,7 +178,12 @@ Sr.World.prototype.fovCallback = function(x, y) {
     return false;
 }
 
-Sr.World.prototype.draw = function(cam) {
+Sr.World.prototype.draw = function(cam, opts) {
+    opts = opts || {};
+    Sr.defaults(opts, {
+        useFOV: true,
+    });
+
     var drawRect = new Sr.Rect({
         center: cam.pos,
         width: Sr.Display.width,
@@ -196,11 +201,13 @@ Sr.World.prototype.draw = function(cam) {
             var grid = this.at(pos);
 
             if (grid) {
-                var isVisisbleTile = cam.visibleTiles.some(function(visisbleGrid) {
-                    return visisbleGrid === grid;
-                });
+                if (opts.useFOV) {
+                    var isVisisbleTile = cam.visibleTiles.some(function(visisbleGrid) {
+                        return visisbleGrid === grid;
+                    });
 
-                if (!isVisisbleTile) continue;
+                    if (!isVisisbleTile) continue;
+                }
 
                 Sr.Display.draw(screenPos, grid.tile.glyph);
 

@@ -5,10 +5,16 @@ var Rot = ROT;
 Sr.Game = Sr.Game || {};
 
 Sr.Game.init = function() {
-    this.world = new Sr.World(Rot.Map.Digger);
+    this.world = new Sr.World(Rot.Map.Uniform, {
+        mapOptions: {
+            roomWidth: [5, 15],
+            roomHeight: [5, 15],
+            roomDugPercentage: 0.75,
+        },
+    });
 
     this.player = new Sr.Player({
-        name: "You",
+        name: "Player",
         glyph: Sr.glyphset.player,
     });
 
@@ -22,10 +28,9 @@ Sr.Game.init = function() {
  
     this.world.add(this.player, { isPlayer: true });
 
-    $(window).resize(this.refresh.bind(this));
-    this.refresh();
-
     this.update();
+
+    $(window).resize(this.refresh.bind(this));
 }
 
 Sr.Game.update = function() {
@@ -35,5 +40,7 @@ Sr.Game.update = function() {
 
 Sr.Game.refresh = function() {
     Sr.Display.clear();
-    this.world.draw(this.player);
+    this.world.draw(this.player, {
+        useFOV: true,
+    });
 }

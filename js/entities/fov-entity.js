@@ -11,8 +11,6 @@ Sr.FOVEntity = function(opts) {
 	})
 
 	this.range = opts.range;
-
-	this.visibleTiles = [];
 }
 
 Sr.FOVEntity.extend(Sr.Entity);

@@ -16,7 +16,7 @@ Sr.Entity = function(opts) {
     this.inventory = [];
 }
 
-// You should overload this
+// Called when the world steps
 Sr.Entity.prototype.step = function() { }
 
 // TODO do this more efficently
