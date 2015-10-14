@@ -11,15 +11,15 @@ Sr.FOVEntity = function(opts) {
 	})
 
 	this.range = opts.range;
-    this.visibleTiles = [];
+    this.visibleTiles = new Set();
 }
 
 Sr.FOVEntity.extend(Sr.Entity);
 
 Sr.FOVEntity.prototype.computeFOV = function() {
-	this.visibleTiles.length = 0;
+	this.visibleTiles.clear();
 
 	this.world.fov.compute(this.pos.x, this.pos.y, this.range, function(x, y, r, visibility) {
-		this.visibleTiles.push(this.world.at(vec2(x, y)));
+		this.visibleTiles.add(this.world.at(vec2(x, y)));
 	}.bind(this));
 }

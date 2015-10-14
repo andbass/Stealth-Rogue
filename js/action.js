@@ -4,16 +4,22 @@ var Rot = ROT;
 
 Sr.Action = Sr.Action || {};
 
-Sr.Action.move = function(pos) {
+Sr.Action.move = function(dir) {
     return {
         name: "move",
-        dir: pos,
+        dir: dir,
     };
 }
 
-Sr.Action.attack = function(ent) {
+Sr.Action.attack = function(dir) {
     return {
         name: "attack",
-        target: ent,
+        dir: dir,
+    };
+}
+
+Sr.Action.wait = function() {
+    return {
+        name: "wait",
     };
 }

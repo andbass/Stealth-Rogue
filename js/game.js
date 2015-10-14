@@ -5,6 +5,9 @@ var Rot = ROT;
 Sr.Game = Sr.Game || {};
 
 Sr.Game.init = function() {
+    // Used for deltatime calculation in refresh method
+    this.lastTime = 0;
+
     this.world = new Sr.World(Rot.Map.Uniform, {
         mapOptions: {
             roomWidth: [5, 15],
@@ -19,7 +22,7 @@ Sr.Game.init = function() {
     });
 
     this.player.pos = this.world
-        .slice()
+        .flatten()
         .filter(function(grid) {
             return grid.tile.walkable;
         })
@@ -36,12 +39,15 @@ Sr.Game.update = function() {
     this.world.step(); 
 }
 
-Sr.Game.refresh = function() {
+Sr.Game.refresh = function(curTime) {
+    this.deltaTime = curTime - this.lastTime;
     Sr.Display.clear();
 
     this.world.draw(this.player, {
         useFOV: true,
     });
+
+    this.lastTime = curTime;
 
     window.requestAnimationFrame(this.refresh.bind(this));
 }

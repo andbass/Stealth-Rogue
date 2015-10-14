@@ -31,7 +31,9 @@ Sr.World.prototype.generate = function() {
             tile = $.extend(true, {}, Sr.tileset.wall);
 
             var fg = Rot.Color.fromString(tile.glyph.fg);
-            fg = Rot.Color.add(fg, [0, 0, Rot.RNG.getUniform() * 200].map(Math.floor));
+
+            var blueness = Rot.RNG.getUniform();
+            fg = Rot.Color.add(fg, [blueness * -120, blueness * -60, blueness * 60].map(Math.floor));
 
             tile.glyph.fg = Rot.Color.toHex(fg);
         }
@@ -69,7 +71,7 @@ Sr.World.prototype.at = function(pos) {
 }
 
 // Returns a slice of the map and flattends out the 2d array
-Sr.World.prototype.slice = function(rect) {
+Sr.World.prototype.flatten = function(rect) {
     rect = Sr.defaultVal(rect, new Sr.Rect({
         topLeft: vec2(0),
         width: this.width, 
@@ -202,11 +204,7 @@ Sr.World.prototype.draw = function(cam, opts) {
 
             if (grid) {
                 if (opts.useFOV) {
-                    var isVisisbleTile = cam.visibleTiles.some(function(visisbleGrid) {
-                        return visisbleGrid === grid;
-                    });
-
-                    if (!isVisisbleTile) continue;
+                    if (!cam.visibleTiles.has(grid)) continue;
                 }
 
                 Sr.Display.draw(screenPos, grid.tile.glyph);

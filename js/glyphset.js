@@ -11,7 +11,7 @@ Sr.glyphset = {
 
 	wall: {
 		ch: "\u3013",   // two bars 
-        fg: "#cc5",
+        fg: "#ddd",
         bg: "#224",
 	},
 
