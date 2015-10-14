@@ -17,8 +17,8 @@ Sr.glyphset = {
 
 	floor: {
 		ch: "\u00b7", // dot
-		fg: "#aaa",
-		bg: "#111",
+		fg: "#bbb",
+		bg: "#151515",
 	},
 
 	player: {

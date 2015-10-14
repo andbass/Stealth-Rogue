@@ -17,6 +17,7 @@ Sr.World = function(Generator, opts) {
     this.generate();
 
     this.mobs = [];
+    this.turnCount = 0;
 }
 
 // Generates the internal world map from a ROT esque map
@@ -131,6 +132,7 @@ Sr.World.prototype.step = function() {
     }
 
     this.mobs.forEach(this.stepEnt.bind(this));
+    this.turnCount++;
 }
 
 Sr.World.prototype.add = function(ent, opts) {
@@ -204,7 +206,9 @@ Sr.World.prototype.draw = function(cam, opts) {
 
             if (grid) {
                 if (opts.useFOV) {
-                    if (!cam.visibleTiles.has(grid)) continue;
+                    if (!cam.visibleTiles.has(grid)) {
+                        continue;
+                    }
                 }
 
                 Sr.Display.draw(screenPos, grid.tile.glyph);

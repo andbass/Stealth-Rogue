@@ -48,7 +48,7 @@ Sr.Display.draw = function(pos, glyph) {
         bg = this.display._data[pos.x + "," + pos.y][4];
     }
 
-	this.display.draw(pos.x, pos.y, glyph.ch, glyph.fg, bg);
+this.display.draw(pos.x, pos.y, glyph.ch, glyph.fg, bg);
 }
 
 Sr.Display.glyph = function(ch, fg, bg) {
