@@ -2,9 +2,9 @@
 var Sr = Sr || {};
 var Rot = ROT;
 
-// An FOVEntity is an entity with visibility
+// An Observer is an entity with visibility
 // It uses ROT's FOV to figure out what tiles it can see
-Sr.FOVEntity = function(opts) {
+Sr.Observer = function(opts) {
 	Sr.Entity.call(this, opts);
 	Sr.defaults(opts, {
 		range: 100,
@@ -14,9 +14,13 @@ Sr.FOVEntity = function(opts) {
     this.visibleTiles = new Set();
 }
 
-Sr.FOVEntity.extend(Sr.Entity);
+Sr.Observer.extend(Sr.Entity);
 
-Sr.FOVEntity.prototype.computeFOV = function() {
+Sr.Observer.prototype.observe = function() {
+    this.computeVisibility();
+}
+
+Sr.Observer.prototype.computeVisibility = function() {
 	this.visibleTiles.clear();
 
 	this.world.fov.compute(this.pos.x, this.pos.y, this.range, function(x, y, r, visibility) {

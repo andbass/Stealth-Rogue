@@ -3,10 +3,10 @@ var Sr = Sr || {};
 var Rot = ROT;
 
 Sr.Player = function(opt) {
-    Sr.FOVEntity.call(this, opt);
+    Sr.Observer.call(this, opt);
 }
 
-Sr.Player.extend(Sr.FOVEntity);
+Sr.Player.extend(Sr.Observer);
 
 Sr.Player.prototype.step = function() {
     var action = Sr.Input.curAction;
@@ -17,5 +17,5 @@ Sr.Player.prototype.step = function() {
         }
     }
 
-	this.computeFOV();
+	this.observe();
 }

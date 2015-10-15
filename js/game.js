@@ -30,7 +30,7 @@ Sr.Game.init = function() {
         .pos;
  
     this.world.add(this.player, { isPlayer: true });
-    this.player.computeFOV();
+    this.player.observe();
 
     window.requestAnimationFrame(this.refresh.bind(this));
 }
