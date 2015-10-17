@@ -5,7 +5,7 @@ var Rot = ROT;
 Sr.Display = Sr.Display || {};
 
 Sr.Display.init = function() {
-    this.prepareUI();
+    this.$gameWindow = $("#game-window");
 
     this.display = new Rot.Display({
         forceSquareRatio: true,
@@ -17,10 +17,6 @@ Sr.Display.init = function() {
     $(window).resize(this.resize.bind(this));
 
     this.$gameWindow.append(this.display.getContainer());
-}
-
-Sr.Display.prepareUI = function() {
-    this.$gameWindow = $("#game-window");
 }
 
 Sr.Display.resize = function() {

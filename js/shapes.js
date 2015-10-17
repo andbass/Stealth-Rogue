@@ -18,19 +18,19 @@ Sr.Rect.prototype = {
         return vec2(this.width, this.height);
     },
 
-    topLeft: function() {
+    get topLeft() {
         return this.center.sub(this.dim().div(2.0));
     },
 
-    topRight: function() {
+    get topRight() {
         return this.center.add(vec2(this.width, -this.height).div(2.0));
     },
 
-    botLeft: function() {
+    get botLeft() {
         return this.center.add(vec2(-this.width, this.height).div(2.0));
     },
 
-    botRight: function() {
+    get botRight() {
         return this.center.add(this.dim().div(2.0));
     },
 };

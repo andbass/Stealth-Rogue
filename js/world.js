@@ -80,7 +80,7 @@ Sr.World.prototype.flatten = function(rect) {
     }));
 
     rect = this.constrain(rect);
-    var topLeft = rect.topLeft();
+    var topLeft = rect.topLeft;
 
     var flattenedMap = [];
     for (var y = topLeft.y; y < topLeft.y + rect.height; y++) {
@@ -98,8 +98,8 @@ Sr.World.prototype.flatten = function(rect) {
 }
 
 Sr.World.prototype.constrain = function(rect) {
-    var topLeft = this.constrainPoint(rect.topLeft());
-    var botRight = this.constrainPoint(rect.botRight());
+    var topLeft = this.constrainPoint(rect.topLeft);
+    var botRight = this.constrainPoint(rect.botRight);
 
     return new Sr.Rect({
         topLeft: topLeft,
@@ -131,7 +131,10 @@ Sr.World.prototype.step = function() {
         this.stepEnt(this.player);
     }
 
-    this.mobs.forEach(this.stepEnt.bind(this));
+    for (var mob of this.mobs) {
+        this.stepEnt.bind(this);
+    }
+
     this.turnCount++;
 }
 
@@ -194,8 +197,8 @@ Sr.World.prototype.draw = function(cam, opts) {
         height: Sr.Display.height,
     });
 
-    var topLeft = drawRect.topLeft();
-    var botRight = drawRect.botRight();
+    var topLeft = drawRect.topLeft;
+    var botRight = drawRect.botRight;
 
     for (var y = topLeft.y; y < topLeft.y + drawRect.height; y++) {
         for (var x = topLeft.x; x < topLeft.x + drawRect.width; x++) {
@@ -205,17 +208,15 @@ Sr.World.prototype.draw = function(cam, opts) {
             var grid = this.at(pos);
 
             if (grid) {
-                if (opts.useFOV) {
-                    if (!cam.visibleTiles.has(grid)) {
-                        continue;
-                    }
+                if (opts.useFOV && !cam.visibleTiles.has(grid)) {
+                    continue;
                 }
 
                 Sr.Display.draw(screenPos, grid.tile.glyph);
 
-                grid.entities.forEach(function(ent) {
+                for (var ent of grid.entities) {
                     Sr.Display.draw(screenPos, ent.glyph);
-                });
+                }
             }
         }
     }

@@ -19,6 +19,8 @@ Sr.Game.init = function() {
     this.player = new Sr.Player({
         name: "Player",
         glyph: Sr.glyphset.player,
+
+        sightRange: Infinity,
     });
 
     this.player.pos = this.world
@@ -48,6 +50,7 @@ Sr.Game.refresh = function(curTime) {
     });
 
     this.lastTime = curTime;
+    Sr.UI.refresh();
 
     window.requestAnimationFrame(this.refresh.bind(this));
 }

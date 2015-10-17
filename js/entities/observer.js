@@ -7,10 +7,13 @@ var Rot = ROT;
 Sr.Observer = function(opts) {
 	Sr.Entity.call(this, opts);
 	Sr.defaults(opts, {
-		range: 100,
+		sightRange: 10,
+        hearingRange: 10,
 	})
 
-	this.range = opts.range;
+	this.sightRange = opts.sightRange;
+	this.hearingRange = opts.hearingRange;
+
     this.visibleTiles = new Set();
 }
 
@@ -23,7 +26,7 @@ Sr.Observer.prototype.observe = function() {
 Sr.Observer.prototype.computeVisibility = function() {
 	this.visibleTiles.clear();
 
-	this.world.fov.compute(this.pos.x, this.pos.y, this.range, function(x, y, r, visibility) {
-		this.visibleTiles.add(this.world.at(vec2(x, y)));
+	this.world.fov.compute(this.pos.x, this.pos.y, this.sightRange, function(x, y, r, visibility) {
+        this.visibleTiles.add(this.world.at(vec2(x, y)));
 	}.bind(this));
 }
