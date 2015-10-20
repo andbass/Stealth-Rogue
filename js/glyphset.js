@@ -3,31 +3,41 @@ var Sr = Sr || {};
 var Rot = ROT;
 
 Sr.glyphset = {
-    default: {
-        ch: "?",
-        fg: "#fff",
-        bg: "#f00",
+    default: function() {
+        return {
+            ch: "?",
+            fg: "#fff",
+            bg: "#f00",
+        };
     },
 
-	wall: {
-		ch: "\u3013",   // two bars 
-        fg: "#ddd",
-        bg: "#224",
+	wall: function() {
+        return {
+    		ch: "\u3013",   // two bars
+            fg: "#ddd",
+            bg: "#224",
+        };
 	},
 
-	floor: {
-		ch: "\u00b7", // dot
-		fg: "#bbb",
-		bg: "#151515",
+	floor: function() {
+        return {
+    		ch: "\u00b7", // dot
+    		fg: "#bbb",
+    		bg: "#151515",
+        };
 	},
 
-	player: {
-		ch: "@",
-		fg: "#0ff",
+	player: function() {
+        return {
+    		ch: "@",
+    		fg: "#0ff",
+        };
 	},
 
-    grunt: {
-        ch: "G",
-        fg: "#60fa57",
+    grunt: function() {
+        return {
+            ch: "G",
+            fg: "#60fa57",
+        };
     },
 }

@@ -18,7 +18,7 @@ Sr.Game.init = function() {
 
     this.player = new Sr.Player({
         name: "Player",
-        glyph: Sr.glyphset.player,
+        glyph: Sr.glyphset.player(),
 
         sightRange: Infinity,
     });
@@ -30,7 +30,7 @@ Sr.Game.init = function() {
         })
         .random()
         .pos;
- 
+
     this.world.add(this.player, { isPlayer: true });
     this.player.observe();
 
@@ -38,7 +38,7 @@ Sr.Game.init = function() {
 }
 
 Sr.Game.update = function() {
-    this.world.step(); 
+    this.world.step();
 }
 
 Sr.Game.refresh = function(curTime) {

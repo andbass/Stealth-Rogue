@@ -3,17 +3,21 @@ var Sr = Sr || {};
 var Rot = ROT;
 
 Sr.tileset = {
-    wall: {
-        name: "Wall",
-        walkable: false,
+    wall: function() {
+        return {
+            name: "Wall",
+            walkable: false,
 
-        glyph: Sr.glyphset.wall
+            glyph: Sr.glyphset.wall(),
+        };
     },
 
-    floor: {
-        name: "Floor",
-        walkable: true,
+    floor: function() {
+        return {
+            name: "Floor",
+            walkable: true,
 
-        glyph: Sr.glyphset.floor
+            glyph: Sr.glyphset.floor(),
+        };
     }
 }

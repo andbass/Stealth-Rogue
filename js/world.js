@@ -25,11 +25,11 @@ Sr.World.prototype.generate = function() {
     this.clear();
 
     this.mapGenerator.create(function(x, y, level) {
-        var tile = Sr.tileset.floor;
+        var tile = Sr.tileset.floor();
 
         if (level) {
-            // TODO fix ugly hack to randomize wall colors
-            tile = $.extend(true, {}, Sr.tileset.wall);
+            // TODO add custom color class to make this cleaner
+            tile = Sr.tileset.wall();
 
             var fg = Rot.Color.fromString(tile.glyph.fg);
 
@@ -47,7 +47,7 @@ Sr.World.prototype.generate = function() {
 }
 
 Sr.World.prototype.clear = function(tile) {
-    tile = tile || Sr.tileset.floor;
+    tile = tile || Sr.tileset.floor();
 
     this.map = [];
 
@@ -75,7 +75,7 @@ Sr.World.prototype.at = function(pos) {
 Sr.World.prototype.flatten = function(rect) {
     rect = Sr.defaultVal(rect, new Sr.Rect({
         topLeft: vec2(0),
-        width: this.width, 
+        width: this.width,
         height: this.height,
     }));
 
@@ -221,4 +221,3 @@ Sr.World.prototype.draw = function(cam, opts) {
         }
     }
 }
-

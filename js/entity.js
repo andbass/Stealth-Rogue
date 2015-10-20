@@ -36,4 +36,3 @@ Sr.Entity.prototype.moveTo = function(pos) {
 Sr.Entity.prototype.die = function() {
     this.health = 0;
 }
-

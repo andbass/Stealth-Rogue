@@ -38,7 +38,7 @@ Sr.Display.clear = function() {
 Sr.Display.draw = function(pos, glyph) {
     var bg = glyph.bg;
 
-    // If the background of a glyph is undefined, 
+    // If the background of a glyph is undefined,
     // we get the background of the specified position and use that
     if (bg === undefined) {
         bg = this.display._data[pos.x + "," + pos.y][4];
