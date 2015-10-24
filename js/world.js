@@ -120,7 +120,9 @@ Sr.World.prototype.stepEnt = function(ent) {
         ent.step();
 
         if (ent.health === 0) {
+            ent.death();
             this.remove(ent);
+
             break;
         }
     }

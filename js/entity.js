@@ -19,18 +19,23 @@ Sr.Entity = function(opts) {
 // Called when the world steps
 Sr.Entity.prototype.step = function() { }
 
+// Called when an entity dies,
+// when its health reaches zero and the world removes it
+Sr.Entity.prototype.death = function() { }
+
 // TODO do this more efficently
 Sr.Entity.prototype.moveTo = function(pos) {
-    if (!this.world.at(pos).tile.walkable) {
-        return;
-    }
+	if (!this.world.at(pos).tile.walkable) {
+		return;
+	}
 
-    var isPlayer = (this === this.world.player);
+	var curGrid = this.world.at(this.pos);
+	Sr.Array.remove(curGrid.entities, this);
 
-    this.world.remove(this);
-    this.pos = pos;
-
-    this.world.add(this, { isPlayer: isPlayer });
+	this.pos = pos;
+	this.world.at(this.pos)
+		.entities
+		.push(this);
 }
 
 Sr.Entity.prototype.die = function() {
